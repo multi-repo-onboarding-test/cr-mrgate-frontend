@@ -21,3 +21,10 @@ export interface Widget {
 export interface HttpClient {
 	get<T>(path: string): Promise<T>
 }
+
+// --- v2 count helper ---
+// Returns the total widget count using the v2 bulk endpoint's envelope metadata.
+export async function fetchWidgetCountV2(http: HttpClient): Promise<number> {
+	const envelope = await http.get<WidgetsV2Envelope>("/widgets/v2/all")
+	return envelope.total
+}
