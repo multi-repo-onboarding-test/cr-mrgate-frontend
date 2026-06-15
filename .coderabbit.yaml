@@ -1,0 +1,6 @@
+language: en-US
+reviews:
+  profile: chill
+knowledge_base:
+  linked_repositories:
+    - multi-repo-onboarding-test/cr-mrgate-backend
