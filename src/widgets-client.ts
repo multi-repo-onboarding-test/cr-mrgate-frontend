@@ -21,3 +21,23 @@ export interface Widget {
 export interface HttpClient {
 	get<T>(path: string): Promise<T>
 }
+
+// --- v2 bulk view ---
+// Calls GET /widgets/v2/all, added in cr-mrgate-backend (v2 envelope endpoint).
+export async function fetchAllWidgetsV2(http: HttpClient): Promise<WidgetsV2View> {
+	const envelope = await http.get<WidgetsV2Envelope>("/widgets/v2/all")
+	return { widgets: envelope.items, total: envelope.total }
+}
+
+export interface WidgetsV2Envelope {
+	readonly version: 2
+	readonly items: readonly Widget[]
+	readonly total: number
+}
+
+export interface WidgetsV2View {
+	readonly widgets: readonly Widget[]
+	readonly total: number
+}
+
+// touch: force re-review (gate-off counterfactual)
