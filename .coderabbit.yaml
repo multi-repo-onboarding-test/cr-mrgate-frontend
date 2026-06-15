@@ -3,4 +3,5 @@ reviews:
   profile: chill
 knowledge_base:
   linked_repositories:
-    - multi-repo-onboarding-test/cr-mrgate-backend
+    - repository: multi-repo-onboarding-test/cr-mrgate-backend
+      instructions: "Backend widgets service. Contains the REST endpoints (including the v2 bulk endpoints) that this frontend client consumes. Consult it to verify backend endpoints referenced by frontend changes exist."
