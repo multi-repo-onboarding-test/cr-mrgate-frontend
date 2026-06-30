@@ -16,6 +16,11 @@ export class WidgetsClient {
 	async bulkGet(ids: string[]): Promise<Widget[]> {
 		return this.http.post<Widget[]>("/v2/widgets/bulk", { ids })
 	}
+
+	// Calls POST /v2/widgets/bulk/count (v2) to count widgets matching ids.
+	async bulkCount(ids: string[]): Promise<number> {
+		return this.http.post<number>("/v2/widgets/bulk/count", { ids })
+	}
 }
 
 export interface Widget {
