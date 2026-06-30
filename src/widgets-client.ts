@@ -11,6 +11,11 @@ export class WidgetsClient {
 	async get(id: string): Promise<Widget> {
 		return this.http.get<Widget>(`/widgets/${id}`)
 	}
+
+	// Calls POST /v2/widgets/bulk (v2 bulk endpoint) to fetch many widgets at once.
+	async bulkGet(ids: string[]): Promise<Widget[]> {
+		return this.http.post<Widget[]>("/v2/widgets/bulk", { ids })
+	}
 }
 
 export interface Widget {
@@ -20,4 +25,5 @@ export interface Widget {
 
 export interface HttpClient {
 	get<T>(path: string): Promise<T>
+	post<T>(path: string, body: unknown): Promise<T>
 }
