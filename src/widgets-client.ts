@@ -1,3 +1,4 @@
+// NOTE: bulk endpoints below depend on cr-mrgate-backend v2 routes; verify they exist there.
 // Frontend client for the widgets backend (cr-mrgate-backend).
 export class WidgetsClient {
 	constructor(private readonly http: HttpClient) {}
