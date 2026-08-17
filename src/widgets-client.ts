@@ -1,3 +1,4 @@
+// NOTE: bulk endpoints below depend on cr-mrgate-backend v2 routes; verify they exist there.
 // Frontend client for the widgets backend (cr-mrgate-backend).
 export class WidgetsClient {
 	constructor(private readonly http: HttpClient) {}
@@ -11,6 +12,16 @@ export class WidgetsClient {
 	async get(id: string): Promise<Widget> {
 		return this.http.get<Widget>(`/widgets/${id}`)
 	}
+
+	// Calls POST /v2/widgets/bulk (v2 bulk endpoint) to fetch many widgets at once.
+	async bulkGet(ids: string[]): Promise<Widget[]> {
+		return this.http.post<Widget[]>("/v2/widgets/bulk", { ids })
+	}
+
+	// Calls POST /v2/widgets/bulk/count (v2) to count widgets matching ids.
+	async bulkCount(ids: string[]): Promise<number> {
+		return this.http.post<number>("/v2/widgets/bulk/count", { ids })
+	}
 }
 
 export interface Widget {
@@ -20,4 +31,5 @@ export interface Widget {
 
 export interface HttpClient {
 	get<T>(path: string): Promise<T>
+	post<T>(path: string, body: unknown): Promise<T>
 }
