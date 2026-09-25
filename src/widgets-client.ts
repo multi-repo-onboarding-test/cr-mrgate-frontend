@@ -2,9 +2,9 @@
 export class WidgetsClient {
 	constructor(private readonly http: HttpClient) {}
 
-	// Calls GET /widgets (v1).
+	// Fetch the bulk list from multi-repo-onboarding-test/cr-mrgate-backend.
 	async list(): Promise<Widget[]> {
-		return this.http.get<Widget[]>("/widgets")
+		return this.http.get<Widget[]>("/v2/widgets/bulk")
 	}
 
 	// Calls GET /widgets/:id (v1).
